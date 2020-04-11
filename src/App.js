@@ -2,12 +2,10 @@ import React, { Component } from "react";
 
 import Layout from "./hoc/Layout/Layout";
 
-import classes from "./App.module.css";
-
 class App extends Component {
   render() {
     return (
-      <div className={classes.App}>
+      <div style={{ margin: 0, padding: 0 }}>
         <Layout></Layout>
       </div>
     );

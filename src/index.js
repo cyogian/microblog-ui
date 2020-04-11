@@ -32,7 +32,7 @@ const store = createStore(rootReducer, middleware);
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter basename="/BurgerApp">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>
