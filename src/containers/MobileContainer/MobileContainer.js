@@ -22,7 +22,7 @@ class MobileContainer extends Component {
       <Responsive getWidth={getWidth} maxWidth={Responsive.onlyMobile.maxWidth}>
         <Navbar handleToggle={this.handleToggle} />
         <div className={classes.Main}>
-          <Sidebar.Pushable>
+          <Sidebar.Pushable style={{ transform: "none" }}>
             <Sidebar
               as={Menu}
               animation="overlay"
@@ -32,12 +32,18 @@ class MobileContainer extends Component {
               visible={sidebarOpened}
               width="thin"
               icon="labeled"
+              style={{
+                position: "fixed",
+                top: "40px",
+              }}
             >
               <NavItems />
             </Sidebar>
             <Sidebar.Pusher
               dimmed={sidebarOpened}
-              style={{ minHeight: "calc(100vh - 40px)" }}
+              style={{
+                minHeight: "calc(100vh - 40px)",
+              }}
             >
               {children}
             </Sidebar.Pusher>
