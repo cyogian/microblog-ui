@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { getWidth } from "../../shared/utilities";
 import { Responsive } from "semantic-ui-react";
+
 import NavBar from "./Navbar/Navbar";
+import { getWidth } from "../../../shared/utilities";
 
 import classes from "./DesktopContainer.module.css";
 

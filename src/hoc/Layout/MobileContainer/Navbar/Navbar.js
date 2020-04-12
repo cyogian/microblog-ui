@@ -1,9 +1,9 @@
 import React from "react";
 import { Menu, Icon, Button, Image } from "semantic-ui-react";
-
-import classes from "./Navbar.module.css";
-import logo from "../../../assets/images/logo.png";
 import { Link } from "react-router-dom";
+
+import logo from "../../../../assets/images/logo.png";
+import classes from "./Navbar.module.css";
 
 const Navbar = (props) => {
   return (

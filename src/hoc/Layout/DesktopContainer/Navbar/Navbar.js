@@ -1,11 +1,11 @@
 import React from "react";
 import { Menu, Button, Image } from "semantic-ui-react";
-
-import classes from "./Navbar.module.css";
-import logo from "../../../assets/images/logo.png";
-
-import NavItems from "../../../components/Navigation/NavItems";
 import { Link } from "react-router-dom";
+
+import NavItems from "../../../../components/Navigation/NavItems";
+
+import logo from "../../../../assets/images/logo.png";
+import classes from "./Navbar.module.css";
 
 const Navbar = (props) => {
   return (

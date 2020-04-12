@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
-import DesktopContainer from "../../containers/DesktopContainer/DesktopContainer";
-import MobileContainer from "../../containers/MobileContainer/MobileContainer";
+import DesktopContainer from "./DesktopContainer/DesktopContainer";
+import MobileContainer from "./MobileContainer/MobileContainer";
+import classes from "./Layout.module.css";
 
 class Layout extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div style={{ margin: 0, padding: 0 }}>
+      <div className={classes.Layout}>
         <DesktopContainer>{children}</DesktopContainer>
         <MobileContainer>{children}</MobileContainer>
       </div>

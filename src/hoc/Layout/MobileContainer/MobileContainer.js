@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { getWidth } from "../../shared/utilities";
 import { Menu, Responsive, Sidebar } from "semantic-ui-react";
+
 import Navbar from "./Navbar/Navbar";
-import NavItems from "../../components/Navigation/NavItems";
+import NavItems from "../../../components/Navigation/NavItems";
+import { getWidth } from "../../../shared/utilities";
 
 import classes from "./MobileContainer.module.css";
 
