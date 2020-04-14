@@ -26,9 +26,14 @@ const Navbar = (props) => {
           {props.isAuthenticated ? (
             <UserDropdown />
           ) : (
-            <Button as={Link} to="/auth/login" inverted>
-              Log in
-            </Button>
+            <Button
+              as={Link}
+              to="/auth/login"
+              inverted
+              icon="sign-in"
+              content="Log In"
+              size="small"
+            />
           )}
         </Menu.Item>
       </Menu>

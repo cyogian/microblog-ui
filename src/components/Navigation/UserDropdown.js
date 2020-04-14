@@ -1,8 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Dropdown, Image } from "semantic-ui-react";
+import { Dropdown, Image, Button } from "semantic-ui-react";
 
 import logo from "../../assets/images/logo.png";
+
+export const LogoutButton = ({ attached }) => (
+  <Button
+    as={Link}
+    to="/auth/logout"
+    icon="sign-out"
+    negative
+    content="Logout"
+    compact
+    attached={attached}
+  />
+);
 
 const UserDropdown = (props) => {
   const trigger = (
@@ -11,7 +23,7 @@ const UserDropdown = (props) => {
     </span>
   );
   return (
-    <Dropdown item pointing="top left" trigger={trigger}>
+    <Dropdown pointing="top left" trigger={trigger}>
       <Dropdown.Menu>
         <Dropdown.Item
           icon="user"
@@ -20,12 +32,7 @@ const UserDropdown = (props) => {
           text="Profile"
           //   to={`/users/${props.currentUser.username}`}
         />
-        <Dropdown.Item
-          icon="sign-out"
-          as={Link}
-          to="/auth/logout"
-          text="Logout"
-        />
+        <Dropdown.Item as={LogoutButton} attached="bottom" />
       </Dropdown.Menu>
     </Dropdown>
   );
