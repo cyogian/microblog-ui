@@ -2,6 +2,7 @@ import React from "react";
 import { Menu, Icon, Button, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
+import UserDropdown from "../../../../components/Navigation/UserDropdown";
 import logo from "../../../../assets/images/logo.png";
 import classes from "./Navbar.module.css";
 
@@ -13,9 +14,13 @@ const Navbar = (props) => {
           <Icon name="sidebar" />
         </Menu.Item>
         <Menu.Item position="right">
-          <Button as="a" inverted size="tiny">
-            Log in
-          </Button>
+          {props.isAuthenticated ? (
+            <UserDropdown />
+          ) : (
+            <Button as={Link} to="/auth/login" inverted>
+              Log in
+            </Button>
+          )}
         </Menu.Item>
         <Menu.Item as={Link} to="/" header style={{ padding: "0 1em 0 0.5em" }}>
           <Image size="mini" src={logo} alt="Microblog" />

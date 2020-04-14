@@ -9,6 +9,9 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
+// reducers
+import authReducer from "./store/reducers/authReducer";
+
 // CSS Imports
 import "semantic-ui-css/semantic.min.css";
 import "./index.css";
@@ -26,7 +29,9 @@ if (process.env.NODE_ENV === "production") {
   middleware = applyMiddleware(thunk);
 }
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  auth: authReducer,
+});
 
 const store = createStore(rootReducer, middleware);
 

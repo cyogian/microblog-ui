@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Menu, Responsive, Sidebar } from "semantic-ui-react";
 
 import Navbar from "./Navbar/Navbar";
@@ -21,7 +22,10 @@ class MobileContainer extends Component {
 
     return (
       <Responsive getWidth={getWidth} maxWidth={Responsive.onlyMobile.maxWidth}>
-        <Navbar handleToggle={this.handleToggle} />
+        <Navbar
+          handleToggle={this.handleToggle}
+          isAuthenticated={this.props.isAuthenticated}
+        />
         <div className={classes.Main}>
           <Sidebar.Pushable style={{ transform: "none" }}>
             <Sidebar
@@ -59,4 +63,9 @@ MobileContainer.propTypes = {
   children: PropTypes.node,
 };
 
-export default MobileContainer;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+  };
+};
+export default connect(mapStateToProps)(MobileContainer);

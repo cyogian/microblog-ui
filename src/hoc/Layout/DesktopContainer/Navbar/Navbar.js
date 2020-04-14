@@ -6,6 +6,7 @@ import NavItems from "../../../../components/Navigation/NavItems";
 
 import logo from "../../../../assets/images/logo.png";
 import classes from "./Navbar.module.css";
+import UserDropdown from "../../../../components/Navigation/UserDropdown";
 
 const Navbar = (props) => {
   return (
@@ -22,9 +23,13 @@ const Navbar = (props) => {
         </Menu.Item>
         <NavItems />
         <Menu.Item position="right">
-          <Button as="a" inverted>
-            Log in
-          </Button>
+          {props.isAuthenticated ? (
+            <UserDropdown />
+          ) : (
+            <Button as={Link} to="/auth/login" inverted>
+              Log in
+            </Button>
+          )}
         </Menu.Item>
       </Menu>
     </div>
