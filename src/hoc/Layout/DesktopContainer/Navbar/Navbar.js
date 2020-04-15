@@ -11,7 +11,7 @@ import UserDropdown from "../../../../components/Navigation/UserDropdown";
 const Navbar = (props) => {
   return (
     <div className={classes.Navbar}>
-      <Menu fixed="top" inverted secondary pointing size="large">
+      <Menu fixed="top" inverted secondary pointing>
         <Menu.Item as={Link} to="/" header style={{ padding: "0 1em" }}>
           <Image
             size="mini"
@@ -24,7 +24,7 @@ const Navbar = (props) => {
         <NavItems />
         <Menu.Item position="right">
           {props.isAuthenticated ? (
-            <UserDropdown />
+            <UserDropdown imgUrl={props.avatar} username={props.username} />
           ) : (
             <Button
               as={Link}

@@ -17,7 +17,11 @@ class MobileContainer extends Component {
   handleToggle = () => this.setState({ sidebarOpened: true });
 
   render() {
-    const { children } = this.props;
+    const { children, userData } = this.props;
+    let avatar = null;
+    if (userData) {
+      avatar = userData._links.avatar;
+    }
     const { sidebarOpened } = this.state;
 
     return (
@@ -25,6 +29,8 @@ class MobileContainer extends Component {
         <Navbar
           handleToggle={this.handleToggle}
           isAuthenticated={this.props.isAuthenticated}
+          avatar={avatar}
+          username={this.props.username}
         />
         <div className={classes.Main}>
           <Sidebar.Pushable style={{ transform: "none" }}>
@@ -39,7 +45,7 @@ class MobileContainer extends Component {
               icon="labeled"
               style={{
                 position: "fixed",
-                top: "40px",
+                top: "56px",
               }}
             >
               <NavItems />
@@ -47,7 +53,7 @@ class MobileContainer extends Component {
             <Sidebar.Pusher
               dimmed={sidebarOpened}
               style={{
-                minHeight: "calc(100vh - 40px)",
+                minHeight: "calc(100vh - 56px)",
               }}
             >
               {children}
@@ -66,6 +72,8 @@ MobileContainer.propTypes = {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
+    userData: state.user.userData,
+    username: state.auth.username,
   };
 };
 export default connect(mapStateToProps)(MobileContainer);

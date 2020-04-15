@@ -9,13 +9,13 @@ import classes from "./Navbar.module.css";
 const Navbar = (props) => {
   return (
     <div className={classes.Navbar}>
-      <Menu fixed="top" inverted size="small">
+      <Menu fixed="top" inverted>
         <Menu.Item onClick={props.handleToggle}>
           <Icon name="sidebar" />
         </Menu.Item>
         <Menu.Item position="right">
           {props.isAuthenticated ? (
-            <UserDropdown />
+            <UserDropdown imgUrl={props.avatar} username={props.username} />
           ) : (
             <Button
               as={Link}

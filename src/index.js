@@ -11,6 +11,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 // reducers
 import authReducer from "./store/reducers/authReducer";
+import userReducer from "./store/reducers/userReducer";
 
 // CSS Imports
 import "semantic-ui-css/semantic.min.css";
@@ -31,6 +32,7 @@ if (process.env.NODE_ENV === "production") {
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  user: userReducer,
 });
 
 const store = createStore(rootReducer, middleware);

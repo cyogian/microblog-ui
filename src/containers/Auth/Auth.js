@@ -8,7 +8,7 @@ const Auth = (props) => {
   return (
     <Grid
       textAlign="center"
-      style={{ height: "calc(100vh - 54px)" }}
+      style={{ height: "calc(100vh - 56px)" }}
       verticalAlign="middle"
     >
       <Switch>

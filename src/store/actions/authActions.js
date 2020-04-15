@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios";
 
 import * as actionTypes from "./actionTypes";
 
@@ -48,10 +48,9 @@ export const auth = (username, password) => {
       username,
       password,
     };
-    let url = "http://localhost:5000/api/tokens";
 
     axios
-      .post(url, {}, { auth: authData })
+      .post("/tokens", {}, { auth: authData })
       .then((response) => {
         const expirationDate = new Date(response.data.token_expiration);
         const expiresIn =
