@@ -26,16 +26,15 @@ class Explore extends Component {
             active={activeItem === "users"}
             onClick={this.handleItemClick}
           />
-          <Menu.Menu position="right">
-            <Menu.Item>
-              <Input
-                icon={{ name: "search", link: true }}
-                placeholder={`Search ${activeItem}...`}
-              />
-            </Menu.Item>
-          </Menu.Menu>
         </Menu>
-        <Segment attached="bottom"></Segment>
+        <Segment attached="bottom">
+          <div style={{ textAlign: "right" }}>
+            <Input
+              icon={{ name: "search", link: true }}
+              placeholder={`Search ${activeItem}...`}
+            />
+          </div>
+        </Segment>
       </Container>
     );
   }
