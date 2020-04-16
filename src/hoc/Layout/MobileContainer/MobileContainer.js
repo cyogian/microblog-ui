@@ -33,32 +33,36 @@ class MobileContainer extends Component {
           username={this.props.username}
         />
         <div className={classes.Main}>
-          <Sidebar.Pushable style={{ transform: "none" }}>
-            <Sidebar
-              as={Menu}
-              animation="overlay"
-              inverted
-              onHide={this.handleSidebarHide}
-              vertical
-              visible={sidebarOpened}
-              width="thin"
-              icon="labeled"
-              style={{
-                position: "fixed",
-                top: "56px",
-              }}
-            >
-              <NavItems />
-            </Sidebar>
-            <Sidebar.Pusher
-              dimmed={sidebarOpened}
-              style={{
-                minHeight: "calc(100vh - 56px)",
-              }}
-            >
-              {children}
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
+          {this.props.isAuthenticated ? (
+            <Sidebar.Pushable style={{ transform: "none" }}>
+              <Sidebar
+                as={Menu}
+                animation="overlay"
+                inverted
+                onHide={this.handleSidebarHide}
+                vertical
+                visible={sidebarOpened}
+                width="thin"
+                icon="labeled"
+                style={{
+                  position: "fixed",
+                  top: "56px",
+                }}
+              >
+                <NavItems onClick={this.handleSidebarHide} />
+              </Sidebar>
+              <Sidebar.Pusher
+                dimmed={sidebarOpened}
+                style={{
+                  minHeight: "calc(100vh - 56px)",
+                }}
+              >
+                {children}
+              </Sidebar.Pusher>
+            </Sidebar.Pushable>
+          ) : (
+            children
+          )}
         </div>
       </Responsive>
     );

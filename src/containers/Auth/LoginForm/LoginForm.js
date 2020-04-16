@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  Grid,
   Header,
   Form,
   Image,
@@ -32,9 +31,11 @@ class LoginForm extends Component {
     isValid: false,
   };
   componentDidMount() {
+    document.title = "Microblog | Login";
     if (this.props.authRedirectPath !== "/") {
       this.props.onSetAuthRedirectPath();
     }
+    this.props.onResetAuth();
   }
 
   changeInputHandler = (e, field) => {
@@ -70,7 +71,7 @@ class LoginForm extends Component {
     }
     const formData = this.state.formData;
     return (
-      <Grid.Column style={{ maxWidth: 450 }}>
+      <div style={{ maxWidth: 450, margin: "auto" }}>
         <Header as="h2" color="black" textAlign="center">
           <Image src={logo} /> Log-in to your account
         </Header>
@@ -123,11 +124,11 @@ class LoginForm extends Component {
           </Segment>
         </Form>
         <Message>
-          Forgot password? <Link to="/auth/forgot_password">Click here</Link>
+          <Link to="/auth/forgot_password">Forgot password?</Link>
           <hr />
-          New to us? <Link to="/auth/signup">Sign Up</Link>
+          <Link to="/auth/signup">Sign Up</Link>
         </Message>
-      </Grid.Column>
+      </div>
     );
   }
 }
@@ -146,6 +147,7 @@ const mapDispatchToProps = (dispatch) => {
     onAuth: (username, password) =>
       dispatch(authActions.auth(username, password)),
     onSetAuthRedirectPath: () => dispatch(authActions.setAuthRedirectPath("/")),
+    onResetAuth: () => dispatch(authActions.authReset()),
   };
 };
 

@@ -11,6 +11,9 @@ class Home extends Component {
   state = {
     posts: { ...samplePosts },
   };
+  componentDidMount() {
+    document.title = "Microblog | Home";
+  }
   render() {
     return (
       <Container className={classes.Home}>

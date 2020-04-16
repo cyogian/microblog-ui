@@ -95,3 +95,9 @@ export const authCheckState = () => {
     }
   };
 };
+
+export const authReset = () => {
+  return {
+    type: actionTypes.AUTH_RESET,
+  };
+};

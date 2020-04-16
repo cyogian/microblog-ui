@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import Layout from "./hoc/Layout/Layout";
 import Home from "./containers/Home/Home";
 import Auth from "./containers/Auth/Auth";
+import Landing from "./containers/Landing/Landing";
+import Explore from "./containers/Explore/Explore";
 
 import * as authActions from "./store/actions/authActions";
 
@@ -28,6 +30,7 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
+        <Route path="/" exact component={Landing} />
         <Route path="/auth" component={Auth} />
         <Redirect to="/" />
       </Switch>
@@ -36,9 +39,10 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <Switch>
-          <Redirect from="/" exact to="/home" />
           <Route path="/home" exact component={Home} />
+          <Route path="/explore" exact component={Explore} />
           <Route path="/auth" component={Auth} />
+          <Redirect to="/home" />
         </Switch>
       );
     }

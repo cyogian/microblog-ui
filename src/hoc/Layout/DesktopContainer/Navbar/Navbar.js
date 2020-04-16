@@ -21,7 +21,7 @@ const Navbar = (props) => {
           />
           Microblog
         </Menu.Item>
-        <NavItems />
+        {props.isAuthenticated ? <NavItems /> : null}
         <Menu.Item position="right">
           {props.isAuthenticated ? (
             <UserDropdown imgUrl={props.avatar} username={props.username} />

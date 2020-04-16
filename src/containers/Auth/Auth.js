@@ -1,8 +1,9 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
 import LoginForm from "./LoginForm/LoginForm";
 import Logout from "./Logout/Logout";
+import SignUpForm from "./SignUpForm/SignUpForm";
 
 const Auth = (props) => {
   return (
@@ -11,10 +12,20 @@ const Auth = (props) => {
       style={{ height: "calc(100vh - 56px)" }}
       verticalAlign="middle"
     >
-      <Switch>
-        <Route path={`${props.match.path}/login`} component={LoginForm} />
-        <Route path={`${props.match.path}/logout`} component={Logout} />
-      </Switch>
+      {" "}
+      <Grid.Column>
+        <Switch>
+          <Redirect
+            from={props.match.path}
+            exact
+            to={`${props.match.path}/login`}
+          />
+          <Route path={`${props.match.path}/login`} component={LoginForm} />
+          <Route path={`${props.match.path}/signup`} component={SignUpForm} />
+
+          <Route path={`${props.match.path}/logout`} component={Logout} />
+        </Switch>
+      </Grid.Column>
     </Grid>
   );
 };
