@@ -35,6 +35,24 @@ class Paginate extends Component {
           activePage={this.props.activePage}
           onPageChange={this.onChange}
           ellipsisItem={null}
+          boundaryRange={0}
+          siblingRange={0}
+          firstItem={{
+            "aria-label": "First item",
+            content: "1",
+          }}
+          prevItem={{
+            "aria-label": "Previous item",
+            content: "«",
+          }}
+          nextItem={{
+            "aria-label": "Next item",
+            content: "»",
+          }}
+          lastItem={{
+            "aria-label": "Last item",
+            content: this.props.totalPages,
+          }}
         />
         {rendered}
       </div>

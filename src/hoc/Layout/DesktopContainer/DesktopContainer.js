@@ -36,7 +36,7 @@ DesktopContainer.propTypes = {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
-    userData: state.user.userData,
+    userData: state.currentUser.userData,
     username: state.auth.username,
   };
 };

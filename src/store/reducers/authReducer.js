@@ -7,6 +7,7 @@ const initialState = {
   error: null,
   loading: false,
   authRedirectPath: "/",
+  loadingApp: true,
 };
 
 const authStart = (state, action) => {
@@ -19,6 +20,7 @@ const authSuccess = (state, action) => {
     username: action.username,
     error: null,
     loading: false,
+    loadingApp: false,
   });
 };
 
@@ -26,11 +28,16 @@ const authFail = (state, action) => {
   return updateObject(state, {
     error: action.error,
     loading: false,
+    loadingApp: false,
   });
 };
 
 const authLogout = (state, action) => {
-  return updateObject(state, { token: null, username: null });
+  return updateObject(state, {
+    token: null,
+    username: null,
+    loadingApp: false,
+  });
 };
 
 const setAuthRedirectPath = (state, action) => {

@@ -31,9 +31,10 @@ class LoginForm extends Component {
     isValid: false,
   };
   componentDidMount() {
+    console.log(this.props.location);
     document.title = "Microblog | Login";
-    if (this.props.authRedirectPath !== "/") {
-      this.props.onSetAuthRedirectPath();
+    if (this.props.location.state) {
+      this.props.onSetAuthRedirectPath(this.props.location.state.from.pathname);
     }
     this.props.onResetAuth();
   }
@@ -146,7 +147,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (username, password) =>
       dispatch(authActions.auth(username, password)),
-    onSetAuthRedirectPath: () => dispatch(authActions.setAuthRedirectPath("/")),
+    onSetAuthRedirectPath: (path) =>
+      dispatch(authActions.setAuthRedirectPath(path)),
     onResetAuth: () => dispatch(authActions.authReset()),
   };
 };

@@ -16,7 +16,7 @@ class Home extends Component {
     return (
       <Container className={classes.Home}>
         <CreatePost />
-        <Paginate component={Posts} url="/posts/followed_posts" perPage={8} />
+        <Paginate component={Posts} url="/posts/followed_posts" perPage={10} />
       </Container>
     );
   }

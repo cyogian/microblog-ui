@@ -11,7 +11,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 // reducers
 import authReducer from "./store/reducers/authReducer";
-import userReducer from "./store/reducers/userReducer";
+import currentUserReducer from "./store/reducers/currentUserReducer";
 import paginateReducer from "./store/reducers/paginateReducer";
 
 // CSS Imports
@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  user: userReducer,
+  currentUser: currentUserReducer,
   paginate: paginateReducer,
 });
 

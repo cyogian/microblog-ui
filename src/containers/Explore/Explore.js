@@ -31,15 +31,15 @@ class Explore extends Component {
           />
         </Menu>
         <Segment attached="bottom">
-          <div style={{ textAlign: "right" }}>
+          <div style={{ textAlign: "right", marginBottom: "5px" }}>
             <Input
               icon={{ name: "search", link: true }}
               placeholder={`Search ${activeItem}...`}
             />
-            {activeItem === "posts" ? (
-              <Paginate component={Posts} url="/posts" perPage={8} />
-            ) : null}
           </div>
+          {activeItem === "posts" ? (
+            <Paginate component={Posts} url="/posts" perPage={10} size="mini" />
+          ) : null}
         </Segment>
       </Container>
     );
