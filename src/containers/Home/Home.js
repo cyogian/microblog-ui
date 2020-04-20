@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 
-import CreatePost from "../../components/Posts/CreatePost/CreatePost";
+import CreatePost from "./CreatePost/CreatePost";
 import Posts from "../../components/Posts/Posts";
+import Paginate from "../Paginate/Paginate";
 
 import classes from "./Home.module.css";
-import samplePosts from "./samplePosts";
+import { connect } from "react-redux";
 
 class Home extends Component {
-  state = {
-    posts: { ...samplePosts },
-  };
   componentDidMount() {
     document.title = "Microblog | Home";
   }
@@ -18,10 +16,16 @@ class Home extends Component {
     return (
       <Container className={classes.Home}>
         <CreatePost />
-        <Posts posts={this.state.posts.items} />
+        <Paginate component={Posts} url="/posts/followed_posts" perPage={8} />
       </Container>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    token: state.auth.token,
+  };
+};
+
+export default connect(mapStateToProps)(Home);
