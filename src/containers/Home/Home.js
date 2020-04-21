@@ -3,7 +3,7 @@ import { Container } from "semantic-ui-react";
 
 import CreatePost from "./CreatePost/CreatePost";
 import Posts from "../../components/Posts/Posts";
-import Paginate from "../Paginate/Paginate";
+import PaginatePost from "../Paginate/PaginatePost";
 
 import classes from "./Home.module.css";
 import { connect } from "react-redux";
@@ -16,7 +16,11 @@ class Home extends Component {
     return (
       <Container className={classes.Home}>
         <CreatePost />
-        <Paginate component={Posts} url="/posts/followed_posts" perPage={10} />
+        <PaginatePost
+          component={Posts}
+          url="/posts/followed_posts"
+          perPage={10}
+        />
       </Container>
     );
   }

@@ -9,8 +9,14 @@ export const AUTH_RESET = "AUTH_RESET";
 // User actions
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
-// Paginate actions
-export const FETCH_START = "FETCH_START";
-export const FETCH_FAIL = "FETCH_FAIL";
-export const FETCH_SUCCESS = "FETCH_SUCCESS";
-export const FETCH_RESET = "FETCH_RESET";
+// PaginatePost actions
+export const POST_FETCH_START = "POST_FETCH_START";
+export const POST_FETCH_FAIL = "POST_FETCH_FAIL";
+export const POST_FETCH_SUCCESS = "POST_FETCH_SUCCESS";
+export const POST_FETCH_RESET = "POST_FETCH_RESET";
+
+// PaginateUser actions
+export const USER_FETCH_START = "USER_FETCH_START";
+export const USER_FETCH_FAIL = "USER_FETCH_FAIL";
+export const USER_FETCH_SUCCESS = "USER_FETCH_SUCCESS";
+export const USER_FETCH_RESET = "USER_FETCH_RESET";

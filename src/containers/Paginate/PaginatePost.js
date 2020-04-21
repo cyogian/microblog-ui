@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Pagination, Loader, Message } from "semantic-ui-react";
 import { connect } from "react-redux";
 
-import * as paginateActions from "../../store/actions/paginateActions";
+import * as paginatePostActions from "../../store/actions/paginatePostActions.js";
 
 import classes from "./Paginate.module.css";
 
@@ -73,20 +73,20 @@ Paginate.defaultProps = {
 const mapStateToProps = (state) => {
   return {
     token: state.auth.token,
-    dataSource: state.paginate.dataSource,
-    error: state.paginate.error,
-    loading: state.paginate.loading,
-    activePage: state.paginate.activePage,
-    totalPages: state.paginate.totalPages,
-    totalItems: state.paginate.totalItems,
+    dataSource: state.paginatePost.dataSource,
+    error: state.paginatePost.error,
+    loading: state.paginatePost.loading,
+    activePage: state.paginatePost.activePage,
+    totalPages: state.paginatePost.totalPages,
+    totalItems: state.paginatePost.totalItems,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onFetch: (url, token, page, perPage) =>
-      dispatch(paginateActions.fetchPage(url, token, page, perPage)),
-    onResetFetch: () => dispatch(paginateActions.fetchReset()),
+      dispatch(paginatePostActions.fetchPage(url, token, page, perPage)),
+    onResetFetch: () => dispatch(paginatePostActions.fetchReset()),
   };
 };
 

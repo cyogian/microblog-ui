@@ -12,7 +12,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 // reducers
 import authReducer from "./store/reducers/authReducer";
 import currentUserReducer from "./store/reducers/currentUserReducer";
-import paginateReducer from "./store/reducers/paginateReducer";
+import paginatePostReducer from "./store/reducers/paginatePostReducer";
+import paginateUserReducer from "./store/reducers/paginateUserReducer";
 
 // CSS Imports
 import "semantic-ui-css/semantic.min.css";
@@ -34,7 +35,8 @@ if (process.env.NODE_ENV === "production") {
 const rootReducer = combineReducers({
   auth: authReducer,
   currentUser: currentUserReducer,
-  paginate: paginateReducer,
+  paginatePost: paginatePostReducer,
+  paginateUser: paginateUserReducer,
 });
 
 const store = createStore(rootReducer, middleware);
