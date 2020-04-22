@@ -38,7 +38,8 @@ export const fetchPage = (url, token, page = 1, perPage = 10) => {
         dispatch(fetchSuccess(res.data));
       })
       .catch((err) => {
-        dispatch(fetchFail(err.response.data.error));
+        console.log(err);
+        dispatch(fetchFail(err));
       });
   };
 };
@@ -46,5 +47,11 @@ export const fetchPage = (url, token, page = 1, perPage = 10) => {
 export const fetchReset = () => {
   return {
     type: actionTypes.USER_FETCH_RESET,
+  };
+};
+
+export const refreshUsers = () => {
+  return {
+    type: actionTypes.REFRESH_USERS,
   };
 };

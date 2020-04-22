@@ -9,7 +9,12 @@ const Users = (props) => {
   let feed = <strong>Oops, No users to display!</strong>;
   if (props.dataSource.length > 0) {
     feed = props.dataSource.map((user) => (
-      <User key={user.id} userData={user} />
+      <User
+        key={user.id}
+        userData={user}
+        onFollow={props.onFollow}
+        onUnfollow={props.onUnfollow}
+      />
     ));
   }
   return (

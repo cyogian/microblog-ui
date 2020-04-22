@@ -4,6 +4,7 @@ import { Pagination, Loader, Message } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import * as paginateUserActions from "../../store/actions/paginateUserActions";
+import { followUnfollow } from "../../store/actions/userActions";
 
 import classes from "./Paginate.module.css";
 
@@ -12,6 +13,22 @@ class Paginate extends Component {
     this.props.onResetFetch();
     this.props.onFetch(this.props.url, this.props.token, 1, this.props.perPage);
   }
+  componentDidUpdate() {
+    if (this.props.refresh) {
+      this.props.onFetch(
+        this.props.url,
+        this.props.token,
+        this.props.activePage,
+        this.props.perPage
+      );
+    }
+  }
+  onFollow = (userId) => {
+    this.props.onFollowUnfollow(userId, "follow", this.props.token);
+  };
+  onUnfollow = (userId) => {
+    this.props.onFollowUnfollow(userId, "unfollow", this.props.token);
+  };
   onChange = (e, pageInfo) => {
     this.props.onFetch(
       this.props.url,
@@ -22,7 +39,13 @@ class Paginate extends Component {
   };
   render() {
     const DisplayComponent = this.props.component;
-    let rendered = <DisplayComponent dataSource={this.props.dataSource} />;
+    let rendered = (
+      <DisplayComponent
+        dataSource={this.props.dataSource}
+        onFollow={this.onFollow}
+        onUnfollow={this.onUnfollow}
+      />
+    );
     if (this.props.loading) {
       rendered = <Loader />;
     } else if (this.props.error) {
@@ -79,6 +102,7 @@ const mapStateToProps = (state) => {
     activePage: state.paginateUser.activePage,
     totalPages: state.paginateUser.totalPages,
     totalItems: state.paginateUser.totalItems,
+    refresh: state.paginateUser.refresh,
   };
 };
 
@@ -87,6 +111,8 @@ const mapDispatchToProps = (dispatch) => {
     onFetch: (url, token, page, perPage) =>
       dispatch(paginateUserActions.fetchPage(url, token, page, perPage)),
     onResetFetch: () => dispatch(paginateUserActions.fetchReset()),
+    onFollowUnfollow: (userId, type, token) =>
+      dispatch(followUnfollow(userId, type, token)),
   };
 };
 

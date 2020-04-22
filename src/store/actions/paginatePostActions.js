@@ -48,3 +48,9 @@ export const fetchReset = () => {
     type: actionTypes.POST_FETCH_RESET,
   };
 };
+
+export const refreshPosts = () => {
+  return {
+    type: actionTypes.REFRESH_POSTS,
+  };
+};

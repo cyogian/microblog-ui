@@ -20,6 +20,16 @@ class Paginate extends Component {
       this.props.perPage
     );
   };
+  componentDidUpdate() {
+    if (this.props.refresh) {
+      this.props.onFetch(
+        this.props.url,
+        this.props.token,
+        this.props.activePage,
+        this.props.perPage
+      );
+    }
+  }
   render() {
     const DisplayComponent = this.props.component;
     let rendered = <DisplayComponent dataSource={this.props.dataSource} />;
@@ -79,6 +89,7 @@ const mapStateToProps = (state) => {
     activePage: state.paginatePost.activePage,
     totalPages: state.paginatePost.totalPages,
     totalItems: state.paginatePost.totalItems,
+    refresh: state.paginatePost.refresh,
   };
 };
 

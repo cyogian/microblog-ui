@@ -4,36 +4,36 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 import classes from "./User.module.css";
-import { connect } from "react-redux";
 
 const User = (props) => {
   const user = props.userData;
   let followButton = null;
-  if (user.username !== props.username) {
-    if (user.is_following) {
-      followButton = (
-        <Button
-          content="Unfollow"
-          size="mini"
-          inverted
-          color="red"
-          compact
-          floated="right"
-        />
-      );
-    } else {
-      followButton = (
-        <Button
-          content="Follow"
-          size="mini"
-          primary
-          compact
-          floated="right"
-          inverted
-        />
-      );
-    }
+  if (user.is_following) {
+    followButton = (
+      <Button
+        content="Unfollow"
+        size="mini"
+        inverted
+        color="red"
+        compact
+        floated="right"
+        onClick={() => props.onUnfollow(user.id)}
+      />
+    );
+  } else {
+    followButton = (
+      <Button
+        content="Follow"
+        size="mini"
+        primary
+        compact
+        floated="right"
+        inverted
+        onClick={() => props.onFollow(user.id)}
+      />
+    );
   }
+
   return (
     <Feed.Event className={classes.User}>
       <Feed.Label image={user._links.avatar} style={{ paddingTop: "0.5em" }} />
@@ -59,7 +59,4 @@ const User = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { username: state.auth.username };
-};
-export default connect(mapStateToProps)(User);
+export default User;
