@@ -9,12 +9,11 @@ const DeleteButton = ({ attached, onDelete }) => {
   return (
     <Button
       icon="delete"
-      compact
       content="Delete"
       basic
       color="red"
       attached={attached}
-      size="mini"
+      size="tiny"
       style={{ margin: 0 }}
       onClick={onDelete}
     />

@@ -18,3 +18,23 @@ export const postDelete = (postId, token) => {
       .catch((err) => {});
   };
 };
+
+export const postCreate = (postBody, token) => {
+  return (dispatch) => {
+    let url = `/posts`;
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    let data = {
+      body: postBody,
+    };
+    axios
+      .post(url, data, config)
+      .then((res) => {
+        dispatch(refreshPosts());
+      })
+      .catch((err) => {});
+  };
+};

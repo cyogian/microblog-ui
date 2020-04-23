@@ -1,0 +1,26 @@
+.Length {
+  text-align: right;
+  font-weight: bold;
+  color: grey;
+  padding-right: 5px;
+  font-size: 0.8em;
+}
+
+.Length.Negative {
+  color: crimson;
+}
+
+.Length.Positive {
+  color: green;
+}
+
+.Text {
+  border-radius: 0.3em;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+}
+
+.Text.Negative {
+  outline: 2px solid #ff8080;
+}

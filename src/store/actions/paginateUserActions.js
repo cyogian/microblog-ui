@@ -38,7 +38,6 @@ export const fetchPage = (url, token, page = 1, perPage = 10) => {
         dispatch(fetchSuccess(res.data));
       })
       .catch((err) => {
-        console.log(err);
         dispatch(fetchFail(err));
       });
   };
