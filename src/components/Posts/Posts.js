@@ -9,7 +9,12 @@ const Posts = (props) => {
   let feed = <strong>Oops, No posts to display!</strong>;
   if (props.dataSource.length > 0) {
     feed = props.dataSource.map((post) => (
-      <Post key={post.id} postData={post} />
+      <Post
+        key={post.id}
+        postData={post}
+        currentUserId={props.currentUser.id}
+        onDelete={props.onDelete}
+      />
     ));
   }
   return (

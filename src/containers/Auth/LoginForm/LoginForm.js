@@ -31,7 +31,6 @@ class LoginForm extends Component {
     isValid: false,
   };
   componentDidMount() {
-    console.log(this.props.location);
     document.title = "Microblog | Login";
     if (this.props.location.state) {
       this.props.onSetAuthRedirectPath(this.props.location.state.from.pathname);
