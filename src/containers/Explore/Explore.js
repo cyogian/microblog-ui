@@ -4,17 +4,21 @@ import { Container, Menu, Segment, Input } from "semantic-ui-react";
 import PaginatePost from "../Paginate/PaginatePost";
 import PaginateUser from "../Paginate/PaginateUser";
 import Posts from "../../components/Posts/Posts";
+import Users from "../../components/Users/Users";
+import { capitalize } from "../../shared/utilities";
 
 import classes from "./Explore.module.css";
-import Users from "../../components/Users/Users";
 
 class Explore extends Component {
   state = { activeItem: "posts" };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => {
+    document.title = `Microblog | Explore | ${capitalize(name)}`;
+    this.setState({ activeItem: name });
+  };
 
   componentDidMount() {
-    document.title = "Microblog | Explore";
+    document.title = "Microblog | Explore | Posts";
   }
   render() {
     let { activeItem } = this.state;

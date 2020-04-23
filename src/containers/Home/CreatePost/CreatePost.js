@@ -32,10 +32,11 @@ class CreatePost extends Component {
           placeHolder="What's Happening?"
         />
         <Button
+          icon="write"
           fluid
           positive
           content="Submit"
-          disabled={postBody.length <= 0}
+          disabled={postBody.length <= 0 || postBody.length > 180}
           onClick={this.onCreate}
         />
       </Segment>
