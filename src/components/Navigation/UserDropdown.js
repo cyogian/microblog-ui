@@ -37,7 +37,7 @@ const UserDropdown = (props) => {
           icon="user"
           as={Link}
           text="Profile"
-          to={`/users/${props.username}`}
+          to={`/user/${props.username}`}
         />
         <Dropdown.Item as={LogoutButton} attached="bottom" />
       </Dropdown.Menu>

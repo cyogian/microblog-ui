@@ -54,16 +54,16 @@ const fetchReset = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.USER_FETCH_START:
+    case actionTypes.USERS_FETCH_START:
       return fetchStart(state, action);
 
-    case actionTypes.USER_FETCH_SUCCESS:
+    case actionTypes.USERS_FETCH_SUCCESS:
       return fetchSuccess(state, action);
 
-    case actionTypes.USER_FETCH_FAIL:
+    case actionTypes.USERS_FETCH_FAIL:
       return fetchFail(state, action);
 
-    case actionTypes.USER_FETCH_RESET:
+    case actionTypes.USERS_FETCH_RESET:
       return fetchReset(state, action);
 
     case actionTypes.REFRESH_USERS:

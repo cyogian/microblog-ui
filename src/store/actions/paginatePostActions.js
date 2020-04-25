@@ -3,21 +3,21 @@ import axios from "../../axios";
 
 const fetchStart = (activePage) => {
   return {
-    type: actionTypes.POST_FETCH_START,
+    type: actionTypes.POSTS_FETCH_START,
     activePage,
   };
 };
 
 const fetchSuccess = (data) => {
   return {
-    type: actionTypes.POST_FETCH_SUCCESS,
+    type: actionTypes.POSTS_FETCH_SUCCESS,
     data,
   };
 };
 
 const fetchFail = (error) => {
   return {
-    type: actionTypes.POST_FETCH_FAIL,
+    type: actionTypes.POSTS_FETCH_FAIL,
     error,
   };
 };
@@ -45,7 +45,7 @@ export const fetchPage = (url, token, page = 1, perPage = 10) => {
 
 export const fetchReset = () => {
   return {
-    type: actionTypes.POST_FETCH_RESET,
+    type: actionTypes.POSTS_FETCH_RESET,
   };
 };
 

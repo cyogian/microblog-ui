@@ -8,11 +8,12 @@ import Home from "./containers/Home/Home";
 import Auth from "./containers/Auth/Auth";
 import Landing from "./containers/Landing/Landing";
 import Explore from "./containers/Explore/Explore";
+import User from "./containers/User/User";
 
 import * as authActions from "./store/actions/authActions";
+import * as currentUserActions from "./store/actions/currentUserActions";
 
 import classes from "./App.module.css";
-import * as currentUserActions from "./store/actions/currentUserActions";
 
 class App extends Component {
   componentDidMount() {
@@ -50,6 +51,12 @@ class App extends Component {
           <Route path="/home" exact component={Home} />
           <Route path="/explore" exact component={Explore} />
           <Route path="/auth" component={Auth} />
+          <Route
+            path="/user"
+            exact
+            render={() => <Redirect to={"/user/" + this.props.username} />}
+          />
+          <Route path="/user/:username" component={User} />
           <Redirect to="/home" />
         </Switch>
       );
