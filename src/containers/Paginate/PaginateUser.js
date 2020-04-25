@@ -9,18 +9,24 @@ import { followUnfollow } from "../../store/actions/userActions";
 import classes from "./Paginate.module.css";
 
 class Paginate extends Component {
+  state = {
+    url: this.props.url,
+  };
   componentDidMount() {
     this.props.onResetFetch();
     this.props.onFetch(this.props.url, this.props.token, 1, this.props.perPage);
   }
   componentDidUpdate() {
-    if (this.props.refresh) {
+    if (this.props.refresh || this.props.url !== this.state.url) {
       this.props.onFetch(
         this.props.url,
         this.props.token,
         this.props.activePage,
         this.props.perPage
       );
+      this.setState({
+        url: this.props.url,
+      });
     }
   }
   onFollow = (userId) => {

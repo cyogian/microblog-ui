@@ -4,34 +4,37 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 import classes from "./User.module.css";
+import { connect } from "react-redux";
 
 const User = (props) => {
   const user = props.userData;
   let followButton = null;
-  if (user.is_following) {
-    followButton = (
-      <Button
-        content="Unfollow"
-        size="mini"
-        inverted
-        color="red"
-        compact
-        floated="right"
-        onClick={() => props.onUnfollow(user.id)}
-      />
-    );
-  } else {
-    followButton = (
-      <Button
-        content="Follow"
-        size="mini"
-        primary
-        compact
-        floated="right"
-        inverted
-        onClick={() => props.onFollow(user.id)}
-      />
-    );
+  if (props.currentUser && user.id !== props.currentUser.id) {
+    if (user.is_following) {
+      followButton = (
+        <Button
+          content="Unfollow"
+          size="mini"
+          inverted
+          color="red"
+          compact
+          floated="right"
+          onClick={() => props.onUnfollow(user.id)}
+        />
+      );
+    } else {
+      followButton = (
+        <Button
+          content="Follow"
+          size="mini"
+          primary
+          compact
+          floated="right"
+          inverted
+          onClick={() => props.onFollow(user.id)}
+        />
+      );
+    }
   }
 
   return (
@@ -58,5 +61,9 @@ const User = (props) => {
     </Feed.Event>
   );
 };
-
-export default User;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser.userData,
+  };
+};
+export default connect(mapStateToProps)(User);
