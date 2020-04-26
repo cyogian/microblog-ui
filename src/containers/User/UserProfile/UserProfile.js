@@ -20,6 +20,7 @@ import Users from "../../../components/Users/Users";
 import PaginateUser from "../../Paginate/PaginateUser";
 
 import classes from "./UserProfile.module.css";
+import { followUnfollow } from "../../../store/actions/userActions";
 
 class UserProfile extends Component {
   state = { activeItem: "posts" };
@@ -29,6 +30,22 @@ class UserProfile extends Component {
       this.props.userData.username
     } | ${capitalize(name)}`;
     this.setState({ activeItem: name });
+  };
+  onFollow = (userId) => {
+    this.props.onFollowUnfollow(
+      userId,
+      "follow",
+      this.props.token,
+      this.state.activeItem
+    );
+  };
+  onUnfollow = (userId) => {
+    this.props.onFollowUnfollow(
+      userId,
+      "unfollow",
+      this.props.token,
+      this.state.activeItem
+    );
   };
   render() {
     const user = this.props.userData;
@@ -56,7 +73,7 @@ class UserProfile extends Component {
             color="red"
             compact
             floated="right"
-            onClick={() => this.props.onUnfollow(user.id)}
+            onClick={() => this.onUnfollow(user.id)}
           />
         );
       } else {
@@ -68,7 +85,7 @@ class UserProfile extends Component {
             compact
             floated="right"
             inverted
-            onClick={() => this.props.onFollow(user.id)}
+            onClick={() => this.onFollow(user.id)}
           />
         );
       }
@@ -175,4 +192,11 @@ const mapStateToProps = (state) => {
     token: state.auth.token,
   };
 };
-export default connect(mapStateToProps)(UserProfile);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFollowUnfollow: (userId, type, token) =>
+      dispatch(followUnfollow(userId, type, token)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

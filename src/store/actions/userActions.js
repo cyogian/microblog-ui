@@ -17,6 +17,7 @@ export const followUnfollow = (userId, type, token) => {
       .patch(url, {}, config)
       .then((res) => {
         dispatch(refreshUsers());
+        dispatch(refreshUser());
       })
       .catch((err) => {});
   };

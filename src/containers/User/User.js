@@ -17,7 +17,10 @@ class User extends Component {
   }
   componentDidUpdate() {
     const { username } = this.props.match.params;
-    if (this.props.userData && username !== this.props.userData.username) {
+    if (
+      this.props.refresh ||
+      (this.props.userData && username !== this.props.userData.username)
+    ) {
       this.props.onFetchUser(username, this.props.token);
     }
   }
@@ -39,7 +42,9 @@ class User extends Component {
           <Route
             path={this.props.match.path}
             exact
-            render={() => <UserProfile userData={userData} />}
+            render={() => (
+              <UserProfile userData={userData} tab={this.props.tab} />
+            )}
           />
           <Route
             path={this.props.match.path + "/edit_profile"}
