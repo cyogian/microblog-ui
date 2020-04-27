@@ -14,16 +14,16 @@ import {
 } from "semantic-ui-react";
 import { Redirect, Route, Link, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import moment from "moment";
 
 import * as userActions from "../../store/actions/userActions";
-import classes from "./User.module.css";
 import { capitalize } from "../../shared/utilities";
 import PaginatePost from "../Paginate/PaginatePost";
 import Posts from "../../components/Posts/Posts";
 import PaginateUser from "../Paginate/PaginateUser";
 import Users from "../../components/Users/Users";
-import moment from "moment";
 import EditProfile from "./EditProfile/EditProfile";
+import classes from "./User.module.css";
 
 class User extends Component {
   state = { activeItem: "posts" };
@@ -66,7 +66,8 @@ class User extends Component {
     );
   };
   render() {
-    const { loading, error, userData } = this.props;
+    const { loading, error, userData, match } = this.props;
+    const { path } = match;
     let rendered = null;
     if (loading) {
       rendered = (
@@ -156,11 +157,17 @@ class User extends Component {
         <>
           <Switch>
             <Route
-              path={`${this.props.match.path}/edit`}
-              component={EditProfile}
+              path={`${path}/edit`}
+              render={(props) => (
+                <EditProfile
+                  onEditClose={(e) =>
+                    this.props.history.push(`/user/${userData.username}`)
+                  }
+                />
+              )}
             />
-            <Route path={this.props.match.path} exact />
-            <Redirect to={this.props.match.path} />
+            <Route path={path} exact />
+            <Redirect to={path} />
           </Switch>
           <Card>
             <Image src={userData._links.avatar_large} wrapped />
