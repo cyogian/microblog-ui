@@ -8,9 +8,10 @@ class EditProfile extends Component {
     return (
       <Modal
         defaultOpen
-        inverted
+        dimmer="inverted"
         className={classes.EditProfile}
         onClose={this.props.onEditClose}
+        closeIcon
       >
         <Modal.Header>Edit Profile</Modal.Header>
       </Modal>

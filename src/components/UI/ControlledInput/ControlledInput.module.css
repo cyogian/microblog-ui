@@ -18,8 +18,10 @@
   border-radius: 0.3em;
   min-width: 100%;
   max-width: 100%;
-  min-height: 100px;
+  min-height: 120px;
   font-family: sans-serif;
+  border-color: #d4d4d4;
+  padding: 0.5em;
 }
 
 .Text.Negative {

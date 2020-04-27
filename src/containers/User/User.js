@@ -40,6 +40,9 @@ class User extends Component {
       (this.props.userData && username !== this.props.userData.username)
     ) {
       this.props.onFetchUser(username, this.props.token);
+      this.setState({
+        activeItem: "posts",
+      });
     }
   }
 
@@ -156,16 +159,18 @@ class User extends Component {
       rendered = (
         <>
           <Switch>
-            <Route
-              path={`${path}/edit`}
-              render={(props) => (
-                <EditProfile
-                  onEditClose={(e) =>
-                    this.props.history.push(`/user/${userData.username}`)
-                  }
-                />
-              )}
-            />
+            {currentUser && currentUser.id === userData.id ? (
+              <Route
+                path={`${path}/edit`}
+                render={(props) => (
+                  <EditProfile
+                    onEditClose={(e) =>
+                      this.props.history.push(`/user/${userData.username}`)
+                    }
+                  />
+                )}
+              />
+            ) : null}
             <Route path={path} exact />
             <Redirect to={path} />
           </Switch>
