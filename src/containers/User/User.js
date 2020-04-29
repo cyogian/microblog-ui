@@ -167,6 +167,7 @@ class User extends Component {
                     onEditClose={(e) =>
                       this.props.history.push(`/user/${userData.username}`)
                     }
+                    currentUser={currentUser}
                   />
                 )}
               />
