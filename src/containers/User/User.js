@@ -35,9 +35,11 @@ class User extends Component {
   }
   componentDidUpdate() {
     const { username } = this.props.match.params;
-    if (
-      this.props.refresh ||
-      (this.props.userData && username !== this.props.userData.username)
+    if (this.props.refresh) {
+      this.props.onFetchUser(username, this.props.token);
+    } else if (
+      this.props.userData &&
+      username !== this.props.userData.username
     ) {
       this.props.onFetchUser(username, this.props.token);
       this.setState({
