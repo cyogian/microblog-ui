@@ -23,7 +23,7 @@ class EditProfile extends Component {
           error: "",
         },
         email: {
-          valid: true,
+          valid: false,
           value: currentUser.email,
           loading: false,
           error: "",
@@ -36,15 +36,14 @@ class EditProfile extends Component {
       valid: false,
     };
   }
-  checkValidity = (username, email, about_me) => {
+  checkValidity = (username, about_me) => {
     let valid = false;
     const { currentUser } = this.props;
-    if (username.valid && email.valid && about_me.valid) {
+    if (username.valid && about_me.valid) {
       valid = true;
     }
     if (
       username.value === currentUser.username &&
-      email.value === currentUser.email &&
       about_me.value === currentUser.about_me
     ) {
       valid = false;
@@ -86,11 +85,7 @@ class EditProfile extends Component {
             controls: updateObject(this.state.controls, {
               username,
             }),
-            valid: this.checkValidity(
-              username,
-              this.state.controls.email,
-              this.state.controls.about_me
-            ),
+            valid: this.checkValidity(username, this.state.controls.about_me),
           });
         })
         .catch((err) => {});
@@ -106,11 +101,7 @@ class EditProfile extends Component {
       controls: updateObject(this.state.controls, {
         username,
       }),
-      valid: this.checkValidity(
-        username,
-        this.state.controls.email,
-        this.state.controls.about_me
-      ),
+      valid: this.checkValidity(username, this.state.controls.about_me),
     });
   };
   onEmailChange = (e) => {
@@ -147,16 +138,10 @@ class EditProfile extends Component {
             controls: updateObject(this.state.controls, {
               email,
             }),
-            valid: this.checkValidity(
-              this.state.controls.username,
-              email,
-              this.state.controls.about_me
-            ),
           });
         })
         .catch((err) => {});
     }
-    if (value === this.props.currentUser.email) valid = true;
     let email = updateObject(this.state.controls.email, {
       value,
       valid,
@@ -167,11 +152,6 @@ class EditProfile extends Component {
       controls: updateObject(this.state.controls, {
         email,
       }),
-      valid: this.checkValidity(
-        this.state.controls.username,
-        email,
-        this.state.controls.about_me
-      ),
     });
   };
   onAboutChange = (e) => {
@@ -185,23 +165,16 @@ class EditProfile extends Component {
       controls: updateObject(this.state.controls, {
         about_me,
       }),
-      valid: this.checkValidity(
-        this.state.controls.username,
-        this.state.controls.email,
-        about_me
-      ),
+      valid: this.checkValidity(this.state.controls.username, about_me),
     });
   };
 
   onSave = () => {
-    const { username, email, about_me } = this.state.controls;
-    this.props.onEditProfile(
-      username.value,
-      email.value,
-      about_me.value,
-      this.props.token
-    );
+    const { username, about_me } = this.state.controls;
+    this.props.onEditProfile(username.value, about_me.value, this.props.token);
   };
+
+  onEmailSave = () => {};
 
   render() {
     const { username, email, about_me } = this.state.controls;
@@ -231,18 +204,6 @@ class EditProfile extends Component {
               onChange={this.onUsernameChange}
             />
             {username.error ? <Message error>{username.error}</Message> : null}
-            <Form.Input
-              fluid
-              icon="mail"
-              placeholder="E-mail Address"
-              label="E-mail"
-              type="text"
-              value={email.value}
-              loading={email.loading}
-              error={!email.loading && !email.valid}
-              onChange={this.onEmailChange}
-            />
-            {email.error ? <Message error>{email.error}</Message> : null}
             <Form.Field>
               <label>About Me</label>
               <ControlledInput
@@ -262,6 +223,34 @@ class EditProfile extends Component {
             >
               Save
             </Form.Button>
+            <hr />
+            <Message color="teal">
+              Changing Email requires OTP verification.
+            </Message>
+            <Form.Input
+              fluid
+              icon="mail"
+              placeholder="E-mail Address"
+              label="E-mail"
+              type="text"
+              value={email.value}
+              loading={email.loading}
+              error={
+                !email.loading &&
+                !email.valid &&
+                email.value !== this.props.currentUser.email
+              }
+              onChange={this.onEmailChange}
+            />
+            {email.error ? <Message error>{email.error}</Message> : null}
+            <Form.Button
+              fluid
+              positive
+              disabled={!email.valid}
+              onClick={this.onEmailSave}
+            >
+              Change Email
+            </Form.Button>
           </Form>
         </Modal.Content>
       </Modal>
@@ -279,8 +268,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onEditProfile: (username, email, about_me, token) => {
-      dispatch(editProfile(username, email, about_me, token));
+    onEditProfile: (username, about_me, token) => {
+      dispatch(editProfile(username, about_me, token));
     },
   };
 };

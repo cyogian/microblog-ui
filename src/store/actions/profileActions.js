@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import { setCurrentUser, refreshCurrentUser } from "./currentUserActions";
+import { setCurrentUser } from "./currentUserActions";
 import axios from "../../axios";
 import { refreshUser } from "./userActions";
 
@@ -19,7 +19,7 @@ const editProfileFail = (error) => {
   return { type: actionTypes.EDIT_PROFILE_FAIL, error };
 };
 
-export const editProfile = (username, email, about_me, token) => {
+export const editProfile = (username, about_me, token) => {
   return (dispatch) => {
     const config = {
         headers: {
@@ -28,7 +28,6 @@ export const editProfile = (username, email, about_me, token) => {
       },
       data = {
         username,
-        email,
         about_me,
       };
     dispatch(editProfileStart());

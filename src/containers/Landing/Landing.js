@@ -20,7 +20,7 @@ const WelcomeContent = (
       as="h3"
       color="teal"
       content="This is a microblogging website where you can post text messages which can
-      be read by other users on the site. You can follow other users and expl ore
+      be read by other users on the site. You can follow other users and explore
       users and posts."
     />
     <Header as="h1">

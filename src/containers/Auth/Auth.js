@@ -22,8 +22,8 @@ const Auth = (props) => {
           />
           <Route path={`${props.match.path}/login`} component={LoginForm} />
           <Route path={`${props.match.path}/signup`} component={SignUpForm} />
-
           <Route path={`${props.match.path}/logout`} component={Logout} />
+          <Redirect to={`${props.match.path}/login`} />
         </Switch>
       </Grid.Column>
     </Grid>
