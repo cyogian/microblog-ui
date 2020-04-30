@@ -1,7 +1,7 @@
 import axios from "../../axios";
 import * as actionTypes from "./actionTypes";
 
-const setCurrentUser = (userData) => {
+export const setCurrentUser = (userData) => {
   return {
     type: actionTypes.SET_CURRENT_USER,
     userData,
@@ -22,5 +22,11 @@ export const getCurrentUser = (token) => {
       .catch((error) => {
         console.log("[GET CURRENT USER]", error);
       });
+  };
+};
+
+export const refreshCurrentUser = () => {
+  return {
+    type: actionTypes.REFRESH_CURRENT_USER,
   };
 };

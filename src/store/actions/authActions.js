@@ -1,6 +1,7 @@
 import axios from "../../axios";
 
 import * as actionTypes from "./actionTypes";
+import { refreshCurrentUser } from "./currentUserActions";
 
 const authStart = () => {
   return {
@@ -60,6 +61,7 @@ export const auth = (username, password) => {
         localStorage.setItem("username", response.data.username);
         dispatch(authSuccess(response.data.token, response.data.username));
         dispatch(checkAuthTimeout(expiresIn));
+        dispatch(refreshCurrentUser());
       })
       .catch((error) => {
         dispatch(authFail(error.response.data.error));

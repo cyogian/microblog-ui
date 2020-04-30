@@ -15,6 +15,7 @@ import currentUserReducer from "./store/reducers/currentUserReducer";
 import paginatePostReducer from "./store/reducers/paginatePostReducer";
 import paginateUserReducer from "./store/reducers/paginateUserReducer";
 import userReducer from "./store/reducers/userReducer";
+import editProfileReducer from "./store/reducers/editProfileReducer";
 
 // CSS Imports
 import "semantic-ui-css/semantic.min.css";
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   paginatePost: paginatePostReducer,
   paginateUser: paginateUserReducer,
   user: userReducer,
+  profile: editProfileReducer,
 });
 
 const store = createStore(rootReducer, middleware);

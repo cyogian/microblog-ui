@@ -21,10 +21,7 @@ class App extends Component {
   }
   componentDidUpdate() {
     if (this.props.isAuthenticated) {
-      if (
-        !this.props.userData ||
-        this.props.userData.username !== this.props.username
-      ) {
+      if (!this.props.userData || this.props.refresh) {
         this.props.getCurrentUser(this.props.token);
       }
     }
@@ -54,7 +51,9 @@ class App extends Component {
           <Route
             path="/user"
             exact
-            render={() => <Redirect to={"/user/" + this.props.username} />}
+            render={() => (
+              <Redirect to={"/user/" + this.props.userData.username} />
+            )}
           />
           <Route path="/user/:username" component={User} />
           <Redirect to="/home" />
@@ -77,9 +76,9 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
     token: state.auth.token,
-    username: state.auth.username,
     userData: state.currentUser.userData,
     loadingApp: state.auth.loadingApp,
+    refresh: state.currentUser.refresh,
   };
 };
 

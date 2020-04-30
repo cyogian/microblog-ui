@@ -21,7 +21,7 @@ class DesktopContainer extends Component {
         <NavBar
           isAuthenticated={this.props.isAuthenticated}
           avatar={avatar}
-          username={this.props.username}
+          username={this.props.userData ? this.props.userData.username : null}
         />
         <div className={classes.Main}>{children}</div>
       </Responsive>
@@ -37,7 +37,6 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
     userData: state.currentUser.userData,
-    username: state.auth.username,
   };
 };
 export default connect(mapStateToProps)(DesktopContainer);

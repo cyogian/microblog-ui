@@ -8,6 +8,12 @@ export const AUTH_RESET = "AUTH_RESET";
 
 // currentUser actions
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const REFRESH_CURRENT_USER = "REFRESH_CURRENT_USER";
+
+// Profile actions
+export const EDIT_PROFILE_START = "EDIT_PROFILE_START";
+export const EDIT_PROFILE_SUCCESS = "EDIT_PROFILE_SUCCESS";
+export const EDIT_PROFILE_FAIL = "EDIT_PROFILE_FAIL";
 
 // User actions
 export const USER_FETCH_START = "USER_FETCH_START";

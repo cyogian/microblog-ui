@@ -30,7 +30,7 @@ class MobileContainer extends Component {
           handleToggle={this.handleToggle}
           isAuthenticated={this.props.isAuthenticated}
           avatar={avatar}
-          username={this.props.username}
+          username={this.props.userData ? this.props.userData.username : null}
         />
         <div className={classes.Main}>
           {this.props.isAuthenticated ? (
@@ -77,7 +77,6 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
     userData: state.currentUser.userData,
-    username: state.auth.username,
   };
 };
 export default connect(mapStateToProps)(MobileContainer);
