@@ -30,7 +30,7 @@ class EditProfile extends Component {
         },
         about_me: {
           valid: true,
-          value: currentUser.about_me,
+          value: currentUser.about_me || "",
         },
       },
       valid: false,

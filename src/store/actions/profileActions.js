@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes";
-import { setCurrentUser } from "./currentUserActions";
+import { setCurrentUser, refreshCurrentUser } from "./currentUserActions";
 import axios from "../../axios";
+import { refreshUser } from "./userActions";
 
 const editProfileStart = () => {
   return {
@@ -36,6 +37,7 @@ export const editProfile = (username, email, about_me, token) => {
       .then((res) => {
         dispatch(editProfileSuccess());
         dispatch(setCurrentUser(res.data));
+        dispatch(refreshUser());
       })
       .catch((err) => {
         let error = "Internal Server Error";
