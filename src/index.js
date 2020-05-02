@@ -16,6 +16,9 @@ import paginatePostReducer from "./store/reducers/paginatePostReducer";
 import paginateUserReducer from "./store/reducers/paginateUserReducer";
 import userReducer from "./store/reducers/userReducer";
 import editProfileReducer from "./store/reducers/editProfileReducer";
+import updateEmailReducer from "./store/reducers/updateEmailReducer";
+import updateEmailResendReducer from "./store/reducers/updateEmailResendReducer";
+import updateEmailVerifyReducer from "./store/reducers/updateEmailVerifyReducer";
 
 // CSS Imports
 import "semantic-ui-css/semantic.min.css";
@@ -41,6 +44,9 @@ const rootReducer = combineReducers({
   paginateUser: paginateUserReducer,
   user: userReducer,
   profile: editProfileReducer,
+  updateEmail: updateEmailReducer,
+  updateEmailResend: updateEmailResendReducer,
+  updateEmailVerify: updateEmailVerifyReducer,
 });
 
 const store = createStore(rootReducer, middleware);

@@ -4,12 +4,17 @@ import { Modal, Form, Message } from "semantic-ui-react";
 import ControlledInput from "../../../components/UI/ControlledInput/ControlledInput";
 import { updateObject } from "../../../shared/utilities";
 import axios from "../../../axios";
-import { editProfile } from "../../../store/actions/profileActions";
+import {
+  editProfile,
+  updateEmail,
+} from "../../../store/actions/profileActions";
 
 import classes from "./EditProfile.module.css";
 import { connect } from "react-redux";
+import VerifyOTP from "./VerifyOTP/VerifyOTP";
 
 const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 class EditProfile extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +41,33 @@ class EditProfile extends Component {
       valid: false,
     };
   }
+  componentDidUpdate(nextProps) {
+    let { currentUser } = this.props;
+    if (nextProps.currentUser !== currentUser) {
+      this.setState({
+        controls: {
+          username: {
+            valid: true,
+            value: currentUser.username,
+            loading: false,
+            error: "",
+          },
+          email: {
+            valid: false,
+            value: currentUser.email,
+            loading: false,
+            error: "",
+          },
+          about_me: {
+            valid: true,
+            value: currentUser.about_me || "",
+          },
+        },
+        valid: false,
+      });
+    }
+  }
+
   checkValidity = (username, about_me) => {
     let valid = false;
     const { currentUser } = this.props;
@@ -174,10 +206,14 @@ class EditProfile extends Component {
     this.props.onEditProfile(username.value, about_me.value, this.props.token);
   };
 
-  onEmailSave = () => {};
+  onEmailSave = () => {
+    const { email } = this.state.controls;
+    this.props.onEmailUpdate(email.value, this.props.token);
+  };
 
   render() {
     const { username, email, about_me } = this.state.controls;
+    const { emailError, emailLoading, emailData } = this.props;
     return (
       <Modal
         defaultOpen
@@ -191,7 +227,7 @@ class EditProfile extends Component {
           {!this.props.loading && this.props.error ? (
             <Message error>{this.props.error}</Message>
           ) : null}
-          <Form error={username.error || email.error ? true : false}>
+          <Form error={username.error ? true : false}>
             <Form.Input
               fluid
               icon="user"
@@ -223,7 +259,9 @@ class EditProfile extends Component {
             >
               Save
             </Form.Button>
-            <hr />
+          </Form>
+          <hr />
+          <Form error={email.error || emailError ? true : false}>
             <Message color="teal">
               Changing Email requires OTP verification.
             </Message>
@@ -248,9 +286,12 @@ class EditProfile extends Component {
               positive
               disabled={!email.valid}
               onClick={this.onEmailSave}
+              loading={emailLoading}
             >
               Change Email
             </Form.Button>
+            {emailError ? <Message error>{emailError}</Message> : null}
+            {emailData ? <VerifyOTP data={emailData} /> : null}
           </Form>
         </Modal.Content>
       </Modal>
@@ -263,6 +304,9 @@ const mapStateToProps = (state) => {
     loading: state.profile.loading,
     error: state.profile.error,
     token: state.auth.token,
+    emailLoading: state.updateEmail.loading,
+    emailError: state.updateEmail.error,
+    emailData: state.updateEmail.data,
   };
 };
 
@@ -270,6 +314,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onEditProfile: (username, about_me, token) => {
       dispatch(editProfile(username, about_me, token));
+    },
+    onEmailUpdate: (email, token) => {
+      dispatch(updateEmail(email, token));
     },
   };
 };
