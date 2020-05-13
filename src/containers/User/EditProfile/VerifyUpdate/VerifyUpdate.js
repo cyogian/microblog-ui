@@ -24,9 +24,8 @@ class VerifyUpdate extends Component {
     this.props.onResetVerify();
   }
   onOTPChange = (e) => {
-    let { value } = this.state.otp;
+    let { value, valid } = this.state.otp;
     let targetValue = e.target.value.trim();
-    let valid = false;
     if (
       !isNaN(targetValue) &&
       isFinite(targetValue) &&

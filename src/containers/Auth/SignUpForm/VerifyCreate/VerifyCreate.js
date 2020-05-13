@@ -138,9 +138,8 @@ class VerifyCreate extends Component {
   };
   onOTPChange = (e) => {
     let { formData } = this.state;
-    let { value } = formData.otp;
+    let { value, valid } = formData.otp;
     let targetValue = e.target.value.trim();
-    let valid = false;
     if (
       !isNaN(targetValue) &&
       isFinite(targetValue) &&
@@ -192,7 +191,8 @@ class VerifyCreate extends Component {
   onRepeatPasswordChange = (e) => {
     let value = e.target.value.trim();
     let repeatPassword = { value };
-    let formData = updateObject(this.state.formData, { repeatPassword });
+    let { formData } = this.state;
+    formData = updateObject(formData, { repeatPassword });
     this.setState({
       formData,
       valid: this.checkValidity(formData),

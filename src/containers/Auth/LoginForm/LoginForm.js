@@ -73,7 +73,7 @@ class LoginForm extends Component {
     return (
       <div style={{ maxWidth: 450, margin: "auto" }}>
         <Header as="h2" color="black" textAlign="center">
-          <Image src={logo} /> Log-in to your account
+          <Image src={logo} /> Login to your account
         </Header>
 
         <Form size="large">
@@ -126,7 +126,7 @@ class LoginForm extends Component {
         <Message>
           <Link to="/auth/forgot_password">Forgot password?</Link>
           <hr />
-          <Link to="/auth/signup">Sign Up</Link>
+          New user? <Link to="/auth/signup">Sign Up</Link>
         </Message>
       </div>
     );
