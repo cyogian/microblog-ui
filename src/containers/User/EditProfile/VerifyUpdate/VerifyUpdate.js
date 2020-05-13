@@ -9,9 +9,9 @@ import {
 } from "../../../../store/actions/profileActions";
 import { connect } from "react-redux";
 
-import classes from "./VerifyOTP.module.css";
+import classes from "./VerifyUpdate.module.css";
 
-class VerifyOTP extends Component {
+class VerifyUpdate extends Component {
   state = {
     open: true,
     otp: {
@@ -23,16 +23,17 @@ class VerifyOTP extends Component {
     this.props.onResetResend();
     this.props.onResetVerify();
   }
-  onOtpChange = (e) => {
+  onOTPChange = (e) => {
     let { value } = this.state.otp;
+    let targetValue = e.target.value.trim();
     let valid = false;
-    let newValue = parseInt(e.target.value);
-    if (e.target.value.length === 0) {
-      value = "";
-    }
-    if (!isNaN(newValue) && isFinite(newValue)) {
-      value = newValue;
-      if (e.target.value.length === 6) {
+    if (
+      !isNaN(targetValue) &&
+      isFinite(targetValue) &&
+      targetValue.length <= 6
+    ) {
+      value = targetValue;
+      if (targetValue.length === 6) {
         valid = true;
       }
     }
@@ -68,7 +69,7 @@ class VerifyOTP extends Component {
         open={open}
         onClose={this.close}
         size="small"
-        className={classes.VerifyOTP}
+        className={classes.VerifyUpdate}
       >
         <Modal.Header>Verify Email</Modal.Header>
         <Modal.Content>
@@ -84,7 +85,7 @@ class VerifyOTP extends Component {
             </p>
             <p style={{ textAlign: "center" }}>
               <Input
-                onChange={this.onOtpChange}
+                onChange={this.onOTPChange}
                 type="text"
                 value={otp.value}
               />
@@ -141,4 +142,4 @@ const mapDispatchToProps = (dispatch) => {
     onResetVerify: () => dispatch(updateEmailVerifyReset()),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(VerifyOTP);
+export default connect(mapStateToProps, mapDispatchToProps)(VerifyUpdate);

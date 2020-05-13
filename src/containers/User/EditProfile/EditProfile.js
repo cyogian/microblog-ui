@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Modal, Form, Message } from "semantic-ui-react";
 
 import ControlledInput from "../../../components/UI/ControlledInput/ControlledInput";
-import { updateObject } from "../../../shared/utilities";
+import { updateObject, isEmail } from "../../../shared/utilities";
 import axios from "../../../axios";
 import {
   editProfile,
@@ -11,9 +11,7 @@ import {
 
 import classes from "./EditProfile.module.css";
 import { connect } from "react-redux";
-import VerifyOTP from "./VerifyOTP/VerifyOTP";
-
-const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+import VerifyUpdate from "./VerifyUpdate/VerifyUpdate";
 
 class EditProfile extends Component {
   constructor(props) {
@@ -144,7 +142,7 @@ class EditProfile extends Component {
     if (
       value !== this.state.controls.email.value &&
       value !== this.props.currentUser.email &&
-      value.match(mailFormat)
+      isEmail(value)
     ) {
       loading = true;
       axios
@@ -291,7 +289,7 @@ class EditProfile extends Component {
               Change Email
             </Form.Button>
             {emailError ? <Message error>{emailError}</Message> : null}
-            {emailData ? <VerifyOTP data={emailData} /> : null}
+            {emailData ? <VerifyUpdate data={emailData} /> : null}
           </Form>
         </Modal.Content>
       </Modal>
