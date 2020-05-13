@@ -142,7 +142,7 @@ class SignUpForm extends Component {
           )}
         </Form>
         <Message>
-          Already have an account? <Link to="/auth/login">Login</Link>
+          Already have an account? <Link to="/auth/login">Login here!</Link>
         </Message>
       </div>
     );

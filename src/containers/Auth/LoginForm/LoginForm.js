@@ -124,9 +124,9 @@ class LoginForm extends Component {
           </Segment>
         </Form>
         <Message>
-          <Link to="/auth/forgot_password">Forgot password?</Link>
+          Forgot password?<Link to="/auth/forgot_password">Reset here!</Link>
           <hr />
-          New user? <Link to="/auth/signup">Sign Up</Link>
+          New user? <Link to="/auth/signup">Sign Up here!</Link>
         </Message>
       </div>
     );
