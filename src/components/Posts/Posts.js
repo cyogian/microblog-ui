@@ -6,7 +6,9 @@ import Post from "./Post/Post";
 import classes from "./Posts.module.css";
 
 const Posts = (props) => {
-  let feed = <strong>Oops, No posts to display!</strong>;
+  let feed = (
+    <strong style={{ margin: "1em" }}>Oops, No posts to display!</strong>
+  );
   if (props.dataSource.length > 0) {
     feed = props.dataSource.map((post) => (
       <Post

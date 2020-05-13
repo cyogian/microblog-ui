@@ -6,7 +6,9 @@ import User from "./User/User";
 import classes from "./Users.module.css";
 
 const Users = (props) => {
-  let feed = <strong>Oops, No users to display!</strong>;
+  let feed = (
+    <strong style={{ margin: "1em" }}>Oops, No users to display!</strong>
+  );
   if (props.dataSource.length > 0) {
     feed = props.dataSource.map((user) => (
       <User
