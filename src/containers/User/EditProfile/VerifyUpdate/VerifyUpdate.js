@@ -82,13 +82,13 @@ class VerifyUpdate extends Component {
               <strong>Note:</strong> If you have not received the email yet,
               click on "Resend OTP".
             </p>
-            <p style={{ textAlign: "center" }}>
+            <div style={{ textAlign: "center" }}>
               <Input
                 onChange={this.onOTPChange}
                 type="text"
                 value={otp.value}
               />
-            </p>
+            </div>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
