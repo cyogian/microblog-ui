@@ -40,8 +40,8 @@ export const createUser = (email) => {
       })
       .catch((err) => {
         let error = "Unexpected Error";
-        if (err.response) {
-          error = err.response.message;
+        if (err.response.data) {
+          error = err.response.data.message;
         }
         dispatch(createUserFail(error));
       });

@@ -39,9 +39,9 @@ export const editProfile = (username, about_me, token) => {
         dispatch(refreshUser());
       })
       .catch((err) => {
-        let error = "Internal Server Error";
-        if (err.response) {
-          error = err.response.message;
+        let error = "Unknown Error";
+        if (err.response.data) {
+          error = err.response.data.message;
         }
         dispatch(editProfileFail(error));
       });
@@ -92,8 +92,8 @@ export const updateEmail = (email, token) => {
       })
       .catch((err) => {
         let error = "Unexpected Error";
-        if (err.response) {
-          error = err.response.message;
+        if (err.response.data) {
+          error = err.response.data.message;
         }
         dispatch(updateEmailFail(error));
       });
@@ -146,8 +146,8 @@ export const updateEmailVerify = (tempId, otp, token) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response) {
-          error = err.response.message;
+        if (err.response.data) {
+          error = err.response.data.message;
         }
         dispatch(updateEmailVerifyFail(error));
       });
@@ -199,8 +199,8 @@ export const updateEmailResend = (tempId, token) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response) {
-          error = err.response.message;
+        if (err.response.data) {
+          error = err.response.data.message;
         }
         dispatch(updateEmailResendFail(error));
       });

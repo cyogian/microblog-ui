@@ -22,6 +22,9 @@ import updateEmailVerifyReducer from "./store/reducers/updateEmailVerifyReducer"
 import createUserReducer from "./store/reducers/createUserReducer";
 import createUserResendReducer from "./store/reducers/createUserResendReducer";
 import createUserVerifyReducer from "./store/reducers/createUserVerifyReducer";
+import forgotPasswordReducer from "./store/reducers/forgotPasswordReducer";
+import forgotPasswordResendReducer from "./store/reducers/forgotPasswordResendReducer";
+import forgotPasswordVerifyReducer from "./store/reducers/forgotPasswordVerifyReducer";
 
 // CSS Imports
 import "semantic-ui-css/semantic.min.css";
@@ -53,6 +56,9 @@ const rootReducer = combineReducers({
   createUser: createUserReducer,
   createUserResend: createUserResendReducer,
   createUserVerify: createUserVerifyReducer,
+  forgotPassword: forgotPasswordReducer,
+  forgotPasswordResend: forgotPasswordResendReducer,
+  forgotPasswordVerify: forgotPasswordVerifyReducer,
 });
 
 const store = createStore(rootReducer, middleware);
