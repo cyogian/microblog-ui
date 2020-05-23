@@ -10,6 +10,12 @@ export const AUTH_RESET = "AUTH_RESET";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const REFRESH_CURRENT_USER = "REFRESH_CURRENT_USER";
 
+// Upload actions
+export const UPLOAD_START = "UPLOAD_START";
+export const UPLOAD_SUCCESS = "UPLOAD_SUCCESS";
+export const UPLOAD_FAIL = "UPLOAD_FAIL";
+export const UPLOAD_RESET = "UPLOAD_RESET";
+
 // Profile actions
 export const EDIT_PROFILE_START = "EDIT_PROFILE_START";
 export const EDIT_PROFILE_SUCCESS = "EDIT_PROFILE_SUCCESS";
@@ -61,8 +67,6 @@ export const USER_FETCH_FAIL = "USER_FETCH_FAIL";
 export const USER_FETCH_SUCCESS = "USER_FETCH_SUCCESS";
 export const USER_FETCH_RESET = "USER_FETCH_RESET";
 export const REFRESH_USER = "REFRESH_USER";
-
-// Post actions
 
 // PaginatePost actions
 export const POSTS_FETCH_START = "POSTS_FETCH_START";

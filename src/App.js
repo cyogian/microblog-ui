@@ -14,6 +14,7 @@ import * as authActions from "./store/actions/authActions";
 import * as currentUserActions from "./store/actions/currentUserActions";
 
 import classes from "./App.module.css";
+import UploadImage from "./containers/UploadImage/UploadImage";
 
 class App extends Component {
   componentDidMount() {
@@ -43,22 +44,27 @@ class App extends Component {
     );
 
     if (this.props.isAuthenticated) {
-      routes = (
-        <Switch>
-          <Route path="/home" exact component={Home} />
-          <Route path="/explore" exact component={Explore} />
-          <Route path="/auth" component={Auth} />
-          <Route
-            path="/user"
-            exact
-            render={() => (
-              <Redirect to={"/user/" + this.props.userData.username} />
-            )}
-          />
-          <Route path="/user/:username" component={User} />
-          <Redirect to="/home" />
-        </Switch>
-      );
+      if (this.props.userData) {
+        routes = (
+          <Switch>
+            <Route path="/home" exact component={Home} />
+            <Route path="/explore" exact component={Explore} />
+            <Route path="/auth" component={Auth} />
+            <Route
+              path="/user"
+              exact
+              render={() => (
+                <Redirect to={"/user/" + this.props.userData.username} />
+              )}
+            />
+            <Route path="/user/:username" component={User} />
+            <Route path="/upload_image" component={UploadImage} />
+            <Redirect to="/home" />
+          </Switch>
+        );
+      } else {
+        routes = <Loader content="Loading UserData..." />;
+      }
     }
 
     if (this.props.loadingApp) {

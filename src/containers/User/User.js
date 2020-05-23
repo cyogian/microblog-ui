@@ -87,7 +87,18 @@ class User extends Component {
       const { currentUser } = this.props;
       let followButton = null;
       let editButton = null;
+      let profilePicButton = null;
       if (currentUser && userData.id === currentUser.id) {
+        profilePicButton = (
+          <Button
+            as={Link}
+            to={`/upload_image`}
+            icon="camera"
+            color="black"
+            compact
+            attached="bottom"
+          />
+        );
         editButton = (
           <Button
             as={Link}
@@ -179,6 +190,7 @@ class User extends Component {
           </Switch>
           <Card>
             <Image src={userData._links.avatar_large} wrapped />
+            {profilePicButton}
             <Card.Content>
               <Card.Header>@{userData.username}</Card.Header>
               <Card.Meta>
