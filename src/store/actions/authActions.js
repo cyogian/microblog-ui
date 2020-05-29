@@ -63,8 +63,12 @@ export const auth = (username, password) => {
         dispatch(checkAuthTimeout(expiresIn));
         dispatch(refreshCurrentUser());
       })
-      .catch((error) => {
-        dispatch(authFail(error.response.data.error));
+      .catch((err) => {
+        let error = "Unknown Error";
+        if (err.response && err.response.data) {
+          error = err.response.data.error || err.response.data.message;
+        }
+        dispatch(authFail(error));
       });
   };
 };

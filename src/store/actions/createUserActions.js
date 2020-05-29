@@ -40,7 +40,7 @@ export const createUser = (email) => {
       })
       .catch((err) => {
         let error = "Unexpected Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(createUserFail(error));
@@ -90,8 +90,8 @@ export const createUserVerify = (tempId, otp, username, password) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response) {
-          error = err.response.message;
+        if (err.response && err.response.data) {
+          error = err.response.data.message;
         }
         dispatch(createUserVerifyFail(error));
       });
@@ -138,8 +138,8 @@ export const createUserResend = (tempId) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response) {
-          error = err.response.message;
+        if (err.response && err.response.data) {
+          error = err.response.data.message;
         }
         dispatch(createUserResendFail(error));
       });

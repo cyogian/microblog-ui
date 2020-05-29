@@ -38,7 +38,11 @@ export const fetchPage = (url, token, page = 1, perPage = 10) => {
         dispatch(fetchSuccess(res.data));
       })
       .catch((err) => {
-        dispatch(fetchFail(err));
+        let error = "Unknown Error";
+        if (err.response && err.response.data) {
+          error = err.response.data.error;
+        }
+        dispatch(fetchFail(error));
       });
   };
 };

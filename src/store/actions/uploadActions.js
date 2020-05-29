@@ -43,7 +43,7 @@ export const upload = (formData, token) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(uploadFail(error));

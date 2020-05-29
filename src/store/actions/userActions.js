@@ -36,10 +36,10 @@ const fetchSuccess = (userData) => {
   };
 };
 
-const fetchFail = (err) => {
+const fetchFail = (error) => {
   return {
     type: actionTypes.USER_FETCH_FAIL,
-    error: err,
+    error,
   };
 };
 
@@ -58,8 +58,11 @@ export const fetchUser = (username, token) => {
         dispatch(fetchSuccess(res.data));
       })
       .catch((err) => {
-        console.log(err);
-        dispatch(fetchFail(err));
+        let error = "Unknown Error";
+        if (err.response && err.response.data) {
+          error = err.response.data.error;
+        }
+        dispatch(fetchFail(error));
       });
   };
 };

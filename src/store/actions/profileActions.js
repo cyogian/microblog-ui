@@ -40,7 +40,7 @@ export const editProfile = (username, about_me, token) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(editProfileFail(error));
@@ -92,7 +92,7 @@ export const updateEmail = (email, token) => {
       })
       .catch((err) => {
         let error = "Unexpected Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(updateEmailFail(error));
@@ -146,7 +146,7 @@ export const updateEmailVerify = (tempId, otp, token) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(updateEmailVerifyFail(error));
@@ -199,7 +199,7 @@ export const updateEmailResend = (tempId, token) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(updateEmailResendFail(error));

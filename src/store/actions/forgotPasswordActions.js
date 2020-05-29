@@ -40,7 +40,7 @@ export const forgotPassword = (email) => {
       })
       .catch((err) => {
         let error = "Unexpected Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(forgotPasswordFail(error));
@@ -89,7 +89,7 @@ export const forgotPasswordVerify = (tempId, otp, password) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(forgotPasswordVerifyFail(error));
@@ -137,7 +137,7 @@ export const forgotPasswordResend = (tempId) => {
       })
       .catch((err) => {
         let error = "Unknown Error";
-        if (err.response.data) {
+        if (err.response && err.response.data) {
           error = err.response.data.message;
         }
         dispatch(forgotPasswordResendFail(error));

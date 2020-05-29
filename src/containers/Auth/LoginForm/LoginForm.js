@@ -76,7 +76,7 @@ class LoginForm extends Component {
           <Image src={logo} /> Login to your account
         </Header>
 
-        <Form size="large">
+        <Form size="large" error>
           <Segment stacked>
             {this.props.error ? (
               <Message color="red">Invalid username or password</Message>
