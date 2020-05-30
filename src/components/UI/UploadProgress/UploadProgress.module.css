@@ -1,0 +1,23 @@
+.UploadProgress {
+  height: 1em;
+  border: 1px solid lightgray;
+  background-color: whitesmoke;
+  border-radius: 0.5em;
+  box-sizing: content-box;
+}
+
+.UploadProgress span {
+  margin: auto;
+  font-size: 0.8em;
+  font-weight: bold;
+  position: absolute;
+  line-height: initial;
+}
+
+.Progress {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(#4772ff, #6b96fa, #6b96fa, #4772ff);
+  text-align: center;
+  box-shadow: 0 0 1px 2px #483d8b;
+}

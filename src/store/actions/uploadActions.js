@@ -23,9 +23,15 @@ export const uploadReset = () => {
     type: actionTypes.UPLOAD_RESET,
   };
 };
-export const upload = (formData, token) => {
+export const upload = (formData, token, updateProgress) => {
   return (dispatch) => {
     const config = {
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        updateProgress(percentCompleted);
+      },
       headers: {
         Authorization: "Bearer " + token,
       },

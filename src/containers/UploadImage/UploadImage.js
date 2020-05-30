@@ -7,14 +7,14 @@ import {
   Image,
   Button,
 } from "semantic-ui-react";
+import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { connect } from "react-redux";
-
+import UploadProgress from "../../components/UI/UploadProgress/UploadProgress";
 import { upload, uploadReset } from "../../store/actions/uploadActions";
 import classes from "./UploadImage.module.css";
-import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
 
 class UploadImage extends Component {
   state = {
@@ -25,10 +25,12 @@ class UploadImage extends Component {
       aspect: 1 / 1,
     },
     croppedImageUrl: null,
+    progress: 0,
   };
   componentDidMount() {
     this.props.onUploadReset();
   }
+  updateProgress = (progress) => this.setState({ progress });
   handleFile = (e) => {
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
@@ -41,7 +43,7 @@ class UploadImage extends Component {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", this.state.croppedImage);
-    this.props.onUpload(formData, this.props.token);
+    this.props.onUpload(formData, this.props.token, this.updateProgress);
   };
   onImageLoaded = (image) => {
     this.imageRef = image;
@@ -101,7 +103,7 @@ class UploadImage extends Component {
   }
 
   render() {
-    const { crop, profile_pic, src } = this.state;
+    const { crop, profile_pic, src, progress } = this.state;
     const { loading, error, userData, success } = this.props;
 
     if (success && src) {
@@ -135,6 +137,13 @@ class UploadImage extends Component {
               onChange={this.onCropChange}
             />
           )}
+
+          {loading ? (
+            <Segment>
+              <UploadProgress progress={progress} />
+            </Segment>
+          ) : null}
+
           <div style={{ textAlign: "right" }}>
             <Form.Button
               loading={loading}
@@ -163,8 +172,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpload: (formData, token) => {
-      dispatch(upload(formData, token));
+    onUpload: (formData, token, updateProgress) => {
+      dispatch(upload(formData, token, updateProgress));
     },
     onUploadReset: () => dispatch(uploadReset()),
   };
