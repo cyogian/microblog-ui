@@ -2,7 +2,7 @@
 
 A single page application made with [creat-react-app](https://create-react-app.dev/) using [React.js](https://reactjs.org/), [Redux](https://redux.js.org/) for state management and [Semantic UI React](https://react.semantic-ui.com/) for UI.
 
-The backend uses [RESTful API](https://themicroblogapp.herokuapp.com/api) made with Python / Flask Framework.
+The backend uses [RESTful API](https://github.com/cyogian/microblog) made with Python / Flask Framework.
 
 ![Microblog-UI-Tour](/screen-capture.gif)
 
