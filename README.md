@@ -4,11 +4,7 @@ A single page application made with [creat-react-app](https://create-react-app.d
 
 The backend uses [RESTful API](https://themicroblogapp.herokuapp.com/api) made with Python / Flask Framework.
 
----
-
 ![Microblog-UI-Tour](/screen-capture.gif)
-
----
 
 ## Features
 
