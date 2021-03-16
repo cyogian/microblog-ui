@@ -1,6 +1,6 @@
 import { Responsive } from "semantic-ui-react";
 
-export const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+export const mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 export const getWidth = () => {
   const isSSR = typeof window === "undefined";
