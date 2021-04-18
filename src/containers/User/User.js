@@ -188,7 +188,7 @@ class User extends Component {
             <Route path={path} exact />
             <Redirect to={path} />
           </Switch>
-          <Card>
+          <Card style={{margin: "auto"}}>
             <Image src={userData._links.avatar_large} wrapped />
             {profilePicButton}
             <Card.Content>
